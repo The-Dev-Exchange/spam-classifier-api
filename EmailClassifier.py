@@ -33,7 +33,7 @@ def preprocessing(dataset, num_of_rows=1):
     return corpus
 
 # Load Dataset
-email_dataset = pd.read_csv(r"D:\EmailClassifier\train.csv")
+email_dataset = pd.read_csv("train.csv")
 
 print(email_dataset.head())
 print(email_dataset.groupby('label').count())
@@ -79,13 +79,12 @@ for name, metrics in results.items():
     print(f"Accuracy: {metrics['Accuracy']:.4f}")
     print(metrics["Report"])
 
-"""
+
 # Save best fit Model and Vectorizer
 classifier=SVC(probability=True, kernel="linear")
 classifier.fit(x_train_tfidf, y_train)
 
-with open("Fraud_Model.pkl", "wb") as f:
-    pickle.dump((tfidfvectorizer, classifier), f)  # Save vectorizer, model, and encoder
+pickle.dump(classifier, open("./model/spam_model.pkl", "wb"))
+pickle.dump(tfidfvectorizer, open("./model/vectorizer.pkl", "wb"))
 
 print("Model and vectorizer saved successfully!")
-"""
