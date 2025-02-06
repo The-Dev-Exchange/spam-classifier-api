@@ -8,6 +8,11 @@ CORS(app)  # Enable Cross-Origin Resource Sharing
 model = pickle.load(open("./model/spam_model.pkl", "rb"))
 vectorizer = pickle.load(open("./model/vectorizer.pkl", "rb"))
 
+@app.route('/health', methods=['GET'])
+def healthcheck():
+    return jsonify({"status": "Healthy"})
+
+
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
