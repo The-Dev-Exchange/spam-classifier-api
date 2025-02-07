@@ -4,7 +4,7 @@ import pickle
 from contractions import fix
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split,RandomizedSearchCV
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
@@ -45,7 +45,6 @@ num_of_rows = email_dataset.shape[0]
 x = preprocessing(email_dataset['sms'], num_of_rows)
 y=email_dataset['label']
 
-#print(x)
 
 # Split Data
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
@@ -88,3 +87,21 @@ pickle.dump(classifier, open("./model/spam_model.pkl", "wb"))
 pickle.dump(tfidfvectorizer, open("./model/vectorizer.pkl", "wb"))
 
 print("Model and vectorizer saved successfully!")
+
+# Now do the Hyperparameter Tuning
+param_dist = {
+    'kernel': ['linear', 'rbf', 'poly', 'sigmoid'],  # Kernel types
+    'degree': [2, 3, 4],  # Only used for 'poly' kernel
+}
+
+# Setup RandomizedSearchCV
+random_search = RandomizedSearchCV(
+    estimator=classifier, param_distributions=param_dist,
+    n_iter=5, cv=5, scoring='accuracy', random_state=42, n_jobs=-1
+)
+
+# Fit the model to get the best parameters
+random_search.fit(x_train_tfidf, y_train)
+print("Best Parameters:", random_search.best_params_)
+print("Best Cross-Validation Accuracy:", random_search.best_score_)
+
