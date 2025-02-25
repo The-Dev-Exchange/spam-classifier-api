@@ -3,6 +3,7 @@ version: "3.8"
 services:
   backend:
     build: .
+    image: khannnar/spam-classifier-backend:1.0.0
     ports:
       - "9000:9000"  # Flask API
     volumes:
@@ -11,7 +12,8 @@ services:
       - spam-classification-network
 
   frontend:
-    build: ./spam-classifier-fe 
+    build: ./spam-classifier-fe
+    image: khannnar/spam-classifier-frontend:1.0.0
     ports:
       - "3000:80" 
     depends_on:

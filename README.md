@@ -108,6 +108,26 @@ Once the application is running, access the **Spam Classifier UI** at:
 ```
 - Description: Returns the best hyperparameters for the model after hyperparameter tuning.
 
+
+###  Curl Commands for each APIs
+
+```bash
+curl -X GET http://localhost:5000/health
+
+
+curl -X POST http://localhost:5000/predict \
+  -H "Content-Type: application/json" \
+  -d '{"email": "Congratulations! You have won a free gift card."}'
+
+curl -X GET http://localhost:5000/train
+
+
+curl -X GET http://localhost:5000/best-params
+
+```
+
+
+
 ## Technologies Used
 - **Python**  - Core programming language used for model development.
 - **Flask** - Lightweight web framework for building the API.
