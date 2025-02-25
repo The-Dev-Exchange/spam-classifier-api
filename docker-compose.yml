@@ -13,9 +13,28 @@ services:
   frontend:
     build: ./spam-classifier-fe 
     ports:
-      - "3000:80"
+      - "3000:80" 
     depends_on:
       - backend
+    networks:
+      - spam-classification-network
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow
+    ports:
+      - "5000:5000"
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+    volumes:
+      - ./mlflow:/mlflow
+    command: mlflow server --host 0.0.0.0 --port 5000
+    depends_on:
+      - backend
+      - frontend
     networks:
       - spam-classification-network
 

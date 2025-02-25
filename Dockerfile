@@ -20,6 +20,5 @@ RUN python -c "import nltk; nltk.download('wordnet'); nltk.download('stopwords')
 # Expose ports for MLflow (default is 5000) and the Flask API via Gunicorn (9000)
 EXPOSE 9000 5000
 
-# Start MLflow and the Flask API concurrently.
-# Note: The MLflow UI is started in the background with '&'.
-CMD sh -c "mlflow ui & gunicorn -w 4 -b 0.0.0.0:9000 app:app"
+# Flask API.
+CMD sh -c "gunicorn -w 4 -b 0.0.0.0:9000 app:app"

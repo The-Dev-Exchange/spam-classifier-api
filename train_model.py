@@ -24,6 +24,9 @@ nltk.download('wordnet')
 nltk.download('stopwords')
 nltk.download('omw-1.4')
 
+mlflow.set_tracking_uri("http://localhost:5000")
+
+
 
 # Preprocessing Function
 def preprocess_text(dataset):
@@ -70,6 +73,7 @@ def train_model():
     best_accuracy = 0
 
     # Start MLflow tracking
+    mlflow.set_tracking_uri("http://localhost:5000")
     mlflow.set_experiment("Spam Classification")
 
     with mlflow.start_run():
