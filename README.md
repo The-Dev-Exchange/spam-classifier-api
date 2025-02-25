@@ -37,7 +37,7 @@ Make sure you have Docker installed on your machine.
 Run the following command to build and start the application using Docker:
 
 ```bash
-docker-compose up --build
+docker-compose up --build --remove-orphans
 ```
 
 ### Application UI  

@@ -18,7 +18,7 @@ RUN pip install --upgrade pip && \
 RUN python -c "import nltk; nltk.download('wordnet'); nltk.download('stopwords'); nltk.download('omw-1.4')"
 
 # Expose ports for MLflow (default is 5000) and the Flask API via Gunicorn (9000)
-EXPOSE 9000 5000
+EXPOSE 9000
 
 # Flask API.
 CMD sh -c "gunicorn -w 4 -b 0.0.0.0:9000 app:app"
