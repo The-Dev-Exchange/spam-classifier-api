@@ -1,2 +1,4 @@
 .venv
 temp.md
+node_modules
+build

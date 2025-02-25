@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  backend:
+    build: .
+    ports:
+      - "9000:9000"  # Flask API
+    volumes:
+      - ./mlflow:/mlflow
+    networks:
+      - spam-classification-network
+
+  frontend:
+    build: ./spam-classifier-fe 
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - spam-classification-network
+
+networks:
+  spam-classification-network:
+    driver: bridge

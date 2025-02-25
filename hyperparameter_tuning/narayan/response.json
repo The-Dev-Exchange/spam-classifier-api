@@ -1,0 +1,6 @@
+{
+    "best_params": {
+      "degree": 2,
+      "kernel": "linear"
+    }
+  }
