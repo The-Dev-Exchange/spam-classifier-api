@@ -112,20 +112,19 @@ Once the application is running, access the **Spam Classifier UI** at:
 ###  Curl Commands for each APIs
 
 ```bash
-curl -X GET http://localhost:5000/health
+curl -X GET http://localhost:9000/health
 
 
-curl -X POST http://localhost:5000/predict \
+curl -X POST http://localhost:9000/predict \
   -H "Content-Type: application/json" \
   -d '{"email": "Congratulations! You have won a free gift card."}'
 
-curl -X GET http://localhost:5000/train
+curl -X GET http://localhost:9000/train
 
 
-curl -X GET http://localhost:5000/best-params
+curl -X GET http://localhost:9000/best-params
 
 ```
-
 
 
 ## Technologies Used
