@@ -1,1 +1,7 @@
-.
+{
+  "best_params": {
+    "C": 10,
+    "degree": 4,
+    "kernel": "sigmoid"
+  }
+}
