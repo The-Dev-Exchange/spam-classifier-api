@@ -122,9 +122,10 @@ def hyperparameter_tuning():
         x_train_tfidf = vectorizer.transform(x_train)
 
     # Hyperparameter Grid
-    param_dist = {
+     param_dist = {
         "kernel": ["linear", "rbf", "poly", "sigmoid"],
         "degree": [2, 3, 4],
+        "C": [0.1, 1, 10, 100]
     }
 
     # Perform Hyperparameter Search
